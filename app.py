@@ -5,8 +5,6 @@ players_copy = constants.PLAYERS[:]
 
 def main():
     while True:
-        balance_teams()
-
         def start_tool():
             welcome = ("Welcome to the Basketball Team Stats Tool")
             welcome_length = (len(welcome)+3)
@@ -99,75 +97,69 @@ def clean_data(players_copy):
         player['guardians'] = player['guardians'].replace(" and ", ", ")
 
 
-clean_data(players_copy)
-
-
-def balance_teams():
-    num_players_team = len(constants.PLAYERS) / len(constants.TEAMS)
-
-
-panthers_experienced_players = []
-panthers_no_experience_players = []
-panthers_total_players = len(panthers_experienced_players) + len(panthers_no_experience_players)
-bandits_experienced_players = []
-bandits_no_experience_players = []
-bandits_total_players = len(bandits_experienced_players) + len(bandits_no_experience_players)
-warriors_experienced_players = []
-warriors_no_experience_players = []
-warriors_total_players = len(warriors_experienced_players) + len(warriors_no_experience_players)
-
-for player in players_copy:
-    if panthers_total_players < 7:
-        if len(panthers_experienced_players) < 3:
-            if player['experience'] is True:
-                panthers_experienced_players.append(player['name'])
-                continue
-        if len(panthers_no_experience_players) < 3:
-            if player['experience'] is False:
-                panthers_no_experience_players.append(player['name'])
-                continue
-
-    if bandits_total_players < 7:
-        if len(bandits_experienced_players) < 3:
-            if player['experience'] is True:
-                bandits_experienced_players.append(player['name'])
-                continue
-
-        if len(bandits_no_experience_players) < 3:
-            if player['experience'] is False:
-                bandits_no_experience_players.append(player['name'])
-                continue
-
-    if warriors_total_players < 7:
-        if len(warriors_experienced_players) < 3:
-            if player['experience'] is True:
-                warriors_experienced_players.append(player['name'])
-                continue
-
-        if len(warriors_no_experience_players) < 3:
-            if player['experience'] is False:
-                warriors_no_experience_players.append(player['name'])
-                continue
-
-final_panthers_roster = panthers_experienced_players + panthers_no_experience_players
-final_bandits_roster = bandits_experienced_players + bandits_no_experience_players
-final_warriors_roster = warriors_experienced_players + warriors_no_experience_players
-
-# Roster counts
-total_panthers_players = len(final_panthers_roster)
-total_bandits_players = len(final_bandits_roster)
-total_warriors_players = len(final_warriors_roster)
-
-# Experience counts
-total_exp_panthers = len(panthers_experienced_players)
-total_exp_bandits = len(bandits_experienced_players)
-total_exp_warriors = len(warriors_experienced_players)
-
-# Inexperience counts
-total_inexp_panthers = len(panthers_no_experience_players)
-total_inexp_bandits = len(bandits_no_experience_players)
-total_inexp_warriors = len(warriors_no_experience_players)
-
 if __name__ == '__main__':
+    clean_data(players_copy)
+
+    panthers_experienced_players = []
+    panthers_no_experience_players = []
+    panthers_total_players = len(panthers_experienced_players) + len(panthers_no_experience_players)
+    bandits_experienced_players = []
+    bandits_no_experience_players = []
+    bandits_total_players = len(bandits_experienced_players) + len(bandits_no_experience_players)
+    warriors_experienced_players = []
+    warriors_no_experience_players = []
+    warriors_total_players = len(warriors_experienced_players) + len(warriors_no_experience_players)
+
+    for player in players_copy:
+        if panthers_total_players < 7:
+            if len(panthers_experienced_players) < 3:
+                if player['experience'] is True:
+                    panthers_experienced_players.append(player['name'])
+                    continue
+            if len(panthers_no_experience_players) < 3:
+                if player['experience'] is False:
+                    panthers_no_experience_players.append(player['name'])
+                    continue
+
+        if bandits_total_players < 7:
+            if len(bandits_experienced_players) < 3:
+                if player['experience'] is True:
+                    bandits_experienced_players.append(player['name'])
+                    continue
+
+            if len(bandits_no_experience_players) < 3:
+                if player['experience'] is False:
+                    bandits_no_experience_players.append(player['name'])
+                    continue
+
+        if warriors_total_players < 7:
+            if len(warriors_experienced_players) < 3:
+                if player['experience'] is True:
+                    warriors_experienced_players.append(player['name'])
+                    continue
+
+            if len(warriors_no_experience_players) < 3:
+                if player['experience'] is False:
+                    warriors_no_experience_players.append(player['name'])
+                    continue
+
+    final_panthers_roster = panthers_experienced_players + panthers_no_experience_players
+    final_bandits_roster = bandits_experienced_players + bandits_no_experience_players
+    final_warriors_roster = warriors_experienced_players + warriors_no_experience_players
+
+    # Roster counts
+    total_panthers_players = len(final_panthers_roster)
+    total_bandits_players = len(final_bandits_roster)
+    total_warriors_players = len(final_warriors_roster)
+
+    # Experience counts
+    total_exp_panthers = len(panthers_experienced_players)
+    total_exp_bandits = len(bandits_experienced_players)
+    total_exp_warriors = len(warriors_experienced_players)
+
+    # Inexperience counts
+    total_inexp_panthers = len(panthers_no_experience_players)
+    total_inexp_bandits = len(bandits_no_experience_players)
+    total_inexp_warriors = len(warriors_no_experience_players)
+
     main()
-    balance_teams()
